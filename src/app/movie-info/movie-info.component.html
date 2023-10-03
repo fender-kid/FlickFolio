@@ -1,1 +1,27 @@
-<p>movie-info works!</p>
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+      <tr>
+          <th>Title</th>
+          <th>Release Date</th>
+          <th>Status</th>
+          <th>Rating</th>
+          <th>Platform</th>
+          <th>Actions</th>
+      </tr>
+  </thead>
+  <tbody>
+      <!-- Sample Row (Will loop through this with *ngFor later) -->
+      <tr>
+          <td>Sample Movie Title</td>
+          <td>01/01/2023</td>
+          <td>Watched</td>
+          <td>PG-13</td>
+          <td>Netflix</td>
+          <td>
+              <!-- Sample actions: Edit/Delete -->
+              <button class="btn btn-sm btn-primary">Edit</button>
+              <button class="btn btn-sm btn-danger">Delete</button>
+          </td>
+      </tr>
+  </tbody>
+</table>
