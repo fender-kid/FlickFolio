@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/movie.model';
 
 @Component({
@@ -6,7 +6,7 @@ import { Movie } from '../models/movie.model';
   templateUrl: './movie-info.component.html',
   styleUrls: ['./movie-info.component.css']
 })
-export class MovieInfoComponent {
+export class MovieInfoComponent implements OnInit {
   movies: Movie[] = [
     {
       title: 'Movie A',
@@ -24,8 +24,29 @@ export class MovieInfoComponent {
     },
   ];
 
-  sortMoviesByStatus(): void {
+  ngOnInit(): void {
+
+  }
+
+  sortByStatus(): void {
     this.movies.sort((a, b) => a.status.localeCompare(b.status));
+  }
+
+  sortByReleaseDate(): void {
+    this.movies.sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
+  }
+
+  sortByRating(): void {
+    const ratingOrder = { 'G': 1, 'PG' : 2, 'PG13' : 3, 'R' : 4, 'MA' : 5};
+
+    this.movies.sort((a, b) => {
+      return ratingOrder[a.rating] - ratingOrder[b.rating];
+    });
+  }
+
+  sortByPlatform(): void {
+    this.movies.sort((a, b) => a.platform.localeCompare(b.platform));
   }
 }
 
+// Add my additional methods.
