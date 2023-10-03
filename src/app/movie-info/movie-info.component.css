@@ -1,0 +1,8 @@
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}

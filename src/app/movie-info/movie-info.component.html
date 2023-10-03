@@ -1,53 +1,29 @@
+<app-filters (onSort)="handleSort($event)"></app-filters>
+
 <table class="table table-bordered table-hover">
   <thead class="thead-dark">
       <tr>
           <th>Title</th>
-          <th>Release Date</th>
-          <th>Status</th>
-          <th>Rating</th>
-          <th>Platform</th>
+          <th><button (click)="handleSort('releaseDate')">Release Date</button></th>
+          <th><button (click)="handleSort('status')">Status</button></th>
+          <th><button (click)="handleSort('rating')">Rating</button></th>
+          <th><button (click)="handleSort('platform')">Platform</button></th>
           <th>Actions</th>
       </tr>
   </thead>
   <tbody>
-      <!-- Sample Row (Will loop through this with *ngFor later) -->
-      <tr>
-          <td>Sample Movie Title</td>
-          <td>01/01/2023</td>
-          <td>Watched</td>
-          <td>PG-13</td>
-          <td>Netflix</td>
-          <td>
-              <!-- Sample actions: Edit/Delete -->
-              <button class="btn btn-sm btn-primary">Edit</button>
-              <button class="btn btn-sm btn-danger">Delete</button>
-          </td>
-      </tr>
-
-      <tr>
-        <td>Sample Movie Title</td>
-        <td>01/01/2023</td>
-        <td>Watched</td>
-        <td>PG-13</td>
-        <td>Hulu</td>
-        <td>
-            <!-- Sample actions: Edit/Delete -->
-            <button class="btn btn-sm btn-primary">Edit</button>
-            <button class="btn btn-sm btn-danger">Delete</button>
-        </td>
-    </tr>
-
-    <tr>
-      <td>Sample Movie Title</td>
-      <td>01/01/2023</td>
-      <td>Watched</td>
-      <td>PG-13</td>
-      <td>Prime</td>
+      <!-- loop through this with *ngFor -->
+    <tr *ngFor="let movie of movies">
+      <td>{{movie.title}}</td>
+      <td>{{movie.releaseDate}}</td>
+      <td>{{movie.status}}</td>
+      <td>{{movie.rating}}</td>
+      <td>{{movie.platform}}</td>
       <td>
-          <!-- Sample actions: Edit/Delete -->
-          <button class="btn btn-sm btn-primary">Edit</button>
-          <button class="btn btn-sm btn-danger">Delete</button>
+        <!-- Sample Buttons -->
+        <button class="btn btn-sm btn-primary">Edit</button>
+        <button class="btn btn-sm btn-danger">Delete</button>
       </td>
-  </tr>
+    </tr>
   </tbody>
 </table>

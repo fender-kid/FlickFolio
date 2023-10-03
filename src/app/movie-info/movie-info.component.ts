@@ -29,14 +29,17 @@ export class MovieInfoComponent implements OnInit {
   }
 
   sortByStatus(): void {
+    // console.log('Sorting by STATUS');
     this.movies.sort((a, b) => a.status.localeCompare(b.status));
   }
 
   sortByReleaseDate(): void {
+    // console.log('Sorting by RELEASE DATE');
     this.movies.sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
   }
 
   sortByRating(): void {
+    // console.log('Sorting by RATING');
     const ratingOrder = { 'G': 1, 'PG' : 2, 'PG13' : 3, 'R' : 4, 'MA' : 5};
 
     this.movies.sort((a, b) => {
@@ -45,8 +48,25 @@ export class MovieInfoComponent implements OnInit {
   }
 
   sortByPlatform(): void {
+    // console.log('Sorting by PLATFORM');
     this.movies.sort((a, b) => a.platform.localeCompare(b.platform));
   }
-}
 
-// Add my additional methods.
+  handleSort(attribute: string): void {
+    // console.log(`Sorting by ${attribute}`);
+    switch(attribute) {
+      case 'status':
+        this.sortByStatus();
+        break;
+      case 'releaseDate':
+        this.sortByReleaseDate();
+        break;
+      case 'rating':
+        this.sortByRating();
+        break;
+      case 'platform':
+        this.sortByPlatform();
+        break;
+    }
+  }
+}
