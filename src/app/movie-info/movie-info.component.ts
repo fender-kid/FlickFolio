@@ -49,6 +49,12 @@ export class MovieInfoComponent implements OnInit {
 
   }
 
+  sortByTitle(direction: 'asc' | 'desc'): void {
+    this.movies.sort((a, b) => {
+      return direction === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
+    });
+  }
+
   sortByStatus(direction: 'asc' | 'desc'): void {
     this.movies.sort((a, b) => {
       return direction === 'asc' ? a.status.localeCompare(b.status) : b.status.localeCompare(a.status);
@@ -83,6 +89,9 @@ export class MovieInfoComponent implements OnInit {
   handleSort(attribute: string): void {
     const direction = this.sortDirections[attribute];
     switch(attribute) {
+      case 'title':
+        this.sortByTitle(direction);
+        break;
       case 'status':
         this.sortByStatus(direction);
         break;
