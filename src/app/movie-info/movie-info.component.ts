@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Directive, OnInit } from '@angular/core';
 import { Movie } from '../models/movie.model';
 
 @Component({
@@ -38,50 +38,65 @@ export class MovieInfoComponent implements OnInit {
     },
   ];
 
+  sortDirections: { [key: string]: 'asc' | 'desc' } = {
+    status: 'asc',
+    releaseDate: 'asc',
+    rating: 'asc',
+    platform: 'asc',
+  }
+
   ngOnInit(): void {
 
   }
 
-  sortByStatus(): void {
-    // console.log('Sorting by STATUS');
-    this.movies.sort((a, b) => a.status.localeCompare(b.status));
-  }
-
-  sortByReleaseDate(): void {
-    // console.log('Sorting by RELEASE DATE');
-    this.movies.sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
-  }
-
-  sortByRating(): void {
-    // console.log('Sorting by RATING');
-    const ratingOrder = { 'G' : 1, 'PG' : 2, 'PG-13' : 3, 'R' : 4, 'MA' : 5};
-
+  sortByStatus(direction: 'asc' | 'desc'): void {
     this.movies.sort((a, b) => {
-      console.log(`Comparing ${a.rating} with ${b.rating}. Result: ${ratingOrder[a.rating] - ratingOrder[b.rating]}`);
-      return ratingOrder[a.rating] - ratingOrder[b.rating];
+      return direction === 'asc' ? a.status.localeCompare(b.status) : b.status.localeCompare(a.status);
     });
   }
 
-  sortByPlatform(): void {
-    // console.log('Sorting by PLATFORM');
-    this.movies.sort((a, b) => a.platform.localeCompare(b.platform));
+  sortByReleaseDate(direction: 'asc' | 'desc'): void {
+    this.movies.sort((a, b) => {
+      return direction ==='asc' ? a.releaseDate.localeCompare(b.releaseDate) : b.status.localeCompare(a.status);
+    });
+  }
+
+  sortByRating(direction: 'asc' |'desc'): void {
+    const ratingOrder = { 'G' : 1, 'PG' : 2, 'PG-13' : 3, 'R' : 4, 'MA' : 5};
+
+    this.movies.sort((a, b) => {
+      const orderA = ratingOrder[a.rating];
+      const orderB = ratingOrder[b.rating];
+
+      const result = orderA - orderB;
+
+      return direction === 'asc' ? result : -result;
+    });
+  }
+
+  sortByPlatform(direction: 'asc' | 'desc'): void {
+    this.movies.sort((a, b) => {
+      return direction === 'asc' ? a.platform.localeCompare(b.platform) : b.platform.localeCompare(a.platform);
+    });
   }
 
   handleSort(attribute: string): void {
-    // console.log(`Sorting by ${attribute}`);
+    const direction = this.sortDirections[attribute];
     switch(attribute) {
       case 'status':
-        this.sortByStatus();
+        this.sortByStatus(direction);
         break;
       case 'releaseDate':
-        this.sortByReleaseDate();
+        this.sortByReleaseDate(direction);
         break;
       case 'rating':
-        this.sortByRating();
+        this.sortByRating(direction);
         break;
       case 'platform':
-        this.sortByPlatform();
+        this.sortByPlatform(direction);
         break;
     }
+
+    this.sortDirections[attribute] = direction === 'asc' ? 'desc' : 'asc';
   }
 }
