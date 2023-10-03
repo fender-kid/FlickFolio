@@ -22,6 +22,20 @@ export class MovieInfoComponent implements OnInit {
       rating: 'R',
       platform: 'Hulu',
     },
+    {
+      title: 'Movie C',
+      releaseDate: '2015-12-01',
+      status: 'Unwatched',
+      rating: 'G',
+      platform: 'Disney+',
+    },
+    {
+      title: 'Movie D',
+      releaseDate: '2021-12-01',
+      status: 'Unwatched',
+      rating: 'MA',
+      platform: 'Prime',
+    },
   ];
 
   ngOnInit(): void {
@@ -40,9 +54,10 @@ export class MovieInfoComponent implements OnInit {
 
   sortByRating(): void {
     // console.log('Sorting by RATING');
-    const ratingOrder = { 'G': 1, 'PG' : 2, 'PG13' : 3, 'R' : 4, 'MA' : 5};
+    const ratingOrder = { 'G' : 1, 'PG' : 2, 'PG-13' : 3, 'R' : 4, 'MA' : 5};
 
     this.movies.sort((a, b) => {
+      console.log(`Comparing ${a.rating} with ${b.rating}. Result: ${ratingOrder[a.rating] - ratingOrder[b.rating]}`);
       return ratingOrder[a.rating] - ratingOrder[b.rating];
     });
   }
