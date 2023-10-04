@@ -17,11 +17,10 @@ export class SidebarComponent {
     platform: '',
   };
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService) {
+  }
 
   addMovie() {
-    console.log('addMovie() in the sidebar component was called');
-    console.log('Form Data:', this.newMovie);
     this.movieService.addMovie(this.newMovie);
     this.newMovie = {
       title: '',

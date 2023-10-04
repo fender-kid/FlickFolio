@@ -15,7 +15,5 @@ export class MovieService {
 
   addMovie(movie: Movie): void {
     this.movies.push(movie);
-    console.log('Adding movie:', movie);
-    console.log('Current movies:', this.movies);
   }
 }

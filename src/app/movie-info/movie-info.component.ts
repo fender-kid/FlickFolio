@@ -1,4 +1,4 @@
-import { Component, Directive, OnInit } from '@angular/core';
+import { Component, Directive, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { MovieService } from '../services/movie.service';
 
@@ -8,38 +8,10 @@ import { MovieService } from '../services/movie.service';
   styleUrls: ['./movie-info.component.css']
 })
 export class MovieInfoComponent implements OnInit {
-  movies: Movie[] = [
-    {
-      title: 'Movie A',
-      releaseDate: '2023-01-01',
-      status: 'Watched',
-      rating: 'PG-13',
-      platform: 'Netflix',
-    },
-    {
-      title: 'Movie B',
-      releaseDate: '2023-12-01',
-      status: 'Unwatched',
-      rating: 'R',
-      platform: 'Hulu',
-    },
-    {
-      title: 'Movie C',
-      releaseDate: '2015-12-01',
-      status: 'Unwatched',
-      rating: 'G',
-      platform: 'Disney+',
-    },
-    {
-      title: 'Movie D',
-      releaseDate: '2021-12-01',
-      status: 'Unwatched',
-      rating: 'MA',
-      platform: 'Prime',
-    },
-  ];
+  movies: Movie[] = [];
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private cdRef: ChangeDetectorRef) {
+  }
 
   sortDirections: { [key: string]: 'asc' | 'desc' } = {
     status: 'asc',
@@ -50,7 +22,7 @@ export class MovieInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.movies = this.movieService.getMovies();
-    console.log('Movies in component:', this.movies);
+    this.cdRef.detectChanges();
   }
 
   sortByTitle(direction: 'asc' | 'desc'): void {
