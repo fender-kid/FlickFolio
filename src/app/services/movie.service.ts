@@ -13,7 +13,9 @@ export class MovieService {
     return [...this.movies];
   }
 
-  addMovie(movie: Movie) {
+  addMovie(movie: Movie): void {
     this.movies.push(movie);
+    console.log('Adding movie:', movie);
+    console.log('Current movies:', this.movies);
   }
 }

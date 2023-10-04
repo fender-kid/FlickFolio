@@ -50,6 +50,7 @@ export class MovieInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.movies = this.movieService.getMovies();
+    console.log('Movies in component:', this.movies);
   }
 
   sortByTitle(direction: 'asc' | 'desc'): void {
