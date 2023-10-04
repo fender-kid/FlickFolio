@@ -1,4 +1,14 @@
 <div class="sidebar-container p-3">
   <h1>FlickFolio</h1>
-  <button class="btn btn-success mt-3">Movie List</button>
+  <button class="btn btn-success" (click)="showForm = !showForm">Add a Movie</button>
+
+  <div *ngIf="showForm">
+    <input [(ngModel)]="newMovie.title" placeholder="Title">
+    <input [(ngModel)]="newMovie.releaseDate" placeholder="Release Date">
+    <input [(ngModel)]="newMovie.status" placeholder="Status">
+    <input [(ngModel)]="newMovie.rating" placeholder="Rating">
+    <input [(ngModel)]="newMovie.platform" placeholder="Platform">
+    <button class="btn btn-primary" (click)="addMovie()">Save Movie</button>
+  </div>
+
 </div>

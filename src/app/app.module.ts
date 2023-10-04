@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FiltersComponent } from './filters/filters.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
+import { MovieService } from './services/movie.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { MovieInfoComponent } from './movie-info/movie-info.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [MovieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, Directive, OnInit } from '@angular/core';
 import { Movie } from '../models/movie.model';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movie-info',
@@ -38,6 +39,8 @@ export class MovieInfoComponent implements OnInit {
     },
   ];
 
+  constructor(private movieService: MovieService) {}
+
   sortDirections: { [key: string]: 'asc' | 'desc' } = {
     status: 'asc',
     releaseDate: 'asc',
@@ -46,7 +49,7 @@ export class MovieInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.movies = this.movieService.getMovies();
   }
 
   sortByTitle(direction: 'asc' | 'desc'): void {
