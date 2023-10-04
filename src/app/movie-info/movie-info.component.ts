@@ -1,6 +1,7 @@
 import { Component, Directive, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { MovieService } from '../services/movie.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-movie-info',
@@ -9,6 +10,7 @@ import { MovieService } from '../services/movie.service';
 })
 export class MovieInfoComponent implements OnInit {
   movies: Movie[] = [];
+  private moviesSubscription: Subscription;
 
   constructor(private movieService: MovieService, private cdRef: ChangeDetectorRef) {
   }
@@ -21,8 +23,16 @@ export class MovieInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movies = this.movieService.getMovies();
-    this.cdRef.detectChanges();
+    this.moviesSubscription = this.movieService.movies$.subscribe(movies => {
+      this.movies = movies;
+      console.log('Updated movies in MovieInfoComponent:', this.movies);
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.moviesSubscription) {
+      this.moviesSubscription.unsubscribe();
+    }
   }
 
   sortByTitle(direction: 'asc' | 'desc'): void {
