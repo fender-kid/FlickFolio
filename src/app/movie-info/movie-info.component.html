@@ -2,28 +2,42 @@
 
 <table class="table table-bordered table-hover">
   <thead class="thead-dark">
-      <tr>
-          <th><button (click)="handleSort('title')">Title</button></th>
-          <th><button (click)="handleSort('releaseDate')">Release Year</button></th>
-          <th><button (click)="handleSort('status')">Status</button></th>
-          <th><button (click)="handleSort('rating')">Rating</button></th>
-          <th><button (click)="handleSort('platform')">Platform</button></th>
-          <th>Actions</th>
-      </tr>
+    <tr>
+      <th><button (click)="handleSort('title')">Title</button></th>
+      <th><button (click)="handleSort('releaseDate')">Release Year</button></th>
+      <th><button (click)="handleSort('status')">Status</button></th>
+      <th><button (click)="handleSort('rating')">Rating</button></th>
+      <th><button (click)="handleSort('platform')">Platform</button></th>
+      <th>Actions</th>
+    </tr>
   </thead>
   <tbody>
-      <!-- loop through this with *ngFor -->
     <tr *ngFor="let movie of movies">
-      <td>{{movie.title}}</td>
-      <td>{{movie.releaseDate}}</td>
-      <td>{{movie.status}}</td>
-      <td>{{movie.rating}}</td>
-      <td>{{movie.platform}}</td>
-      <td>
-        <!-- Sample Buttons -->
-        <button class="btn btn-sm btn-primary">Edit</button>
-        <button class="btn btn-sm btn-danger" (click)="deleteMovie(movie.id)">Delete</button>
-      </td>
+      <!-- Check if the movie is being edited -->
+      <ng-container *ngIf="editingMovie?.id !== movie.id; else editTemplate">
+        <td>{{movie.title}}</td>
+        <td>{{movie.releaseDate}}</td>
+        <td>{{movie.status}}</td>
+        <td>{{movie.rating}}</td>
+        <td>{{movie.platform}}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="startEditing(movie)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteMovie(movie.id)">Delete</button>
+        </td>
+      </ng-container>
+
+      <!-- Template for editing a movie -->
+      <ng-template #editTemplate>
+        <td><input [(ngModel)]="editingMovie.title" /></td>
+        <td><input [(ngModel)]="editingMovie.releaseDate" /></td>
+        <td><input [(ngModel)]="editingMovie.status" /></td>
+        <td><input [(ngModel)]="editingMovie.rating" /></td>
+        <td><input [(ngModel)]="editingMovie.platform" /></td>
+        <td>
+          <button class="btn btn-sm btn-success" (click)="saveEditedMovie()">Save</button>
+          <button class="btn btn-sm btn-secondary" (click)="editingMovie = null">Cancel</button>
+        </td>
+      </ng-template>
     </tr>
     <p>Total Movies: {{ movies.length }}</p>
   </tbody>
