@@ -122,11 +122,11 @@ export class MovieInfoComponent implements OnInit {
 
   applyFilters(filters: any) {
     this.filteredMovies = this.movies.filter(movie => {
-      return (!filters.title || movie.title.includes(filters.title))
-      && (!filters.status || movie.status.includes(filters.status))
-      && (!filters.releaseDate || movie.releaseDate.includes(filters.releaseDate))
-      && (!filters.rating || movie.rating.includes(filters.rating))
-      && (!filters.platform || movie.platform.includes(filters.platform));
+      return (!filters.title || movie.title.startsWith(filters.title))
+      && (!filters.status || movie.status.startsWith(filters.status))
+      && (!filters.releaseDate || movie.releaseDate.startsWith(filters.releaseDate))
+      && (!filters.rating || movie.rating.startsWith(filters.rating))
+      && (!filters.platform || movie.platform.startsWith(filters.platform));
     });
   }
 
