@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FiltersComponent } from './filters/filters.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { MovieService } from './services/movie.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MovieService } from './services/movie.service';
   ],
   imports: [
     FormsModule,
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
   ],
   providers: [MovieService],
   bootstrap: [AppComponent]
