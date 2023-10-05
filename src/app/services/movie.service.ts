@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -8,11 +8,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MovieService {
   private movies: Movie[] = JSON.parse(localStorage.getItem('movies')) || [];
+  private TMDB_API_KEY = '10563f38f0972f5a2479cbd15fafcbfa';
 
   private moviesSubject = new BehaviorSubject<Movie[]>(this.movies);
   movies$ = this.moviesSubject.asObservable();
 
-  constructor(private https: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getMovies(): Movie[] {
     return [...this.movies];
@@ -62,5 +63,10 @@ export class MovieService {
       // Emit the updated movie array
       this.moviesSubject.next(this.movies);
     }
+  }
+
+  fetchMovieCover(title: string): Observable<any> {
+    const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${this.TMDB_API_KEY}&query=${encodeURIComponent(title)}`;
+    return this.http.get(searchUrl);
   }
 }

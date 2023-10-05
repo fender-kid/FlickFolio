@@ -16,7 +16,7 @@
     <tr *ngFor="let movie of filteredMovies">
       <!-- Check if the movie is being edited -->
       <ng-container *ngIf="editingMovie?.id !== movie.id; else editTemplate">
-        <td>{{movie.title}}</td>
+        <td (click)="movieClicked(movie)">{{movie.title}}</td>
         <td>{{movie.releaseDate}}</td>
         <td>{{movie.status}}</td>
         <td>{{movie.rating}}</td>

@@ -8,6 +8,7 @@ import { MovieService } from '../services/movie.service'
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+  selectedMovie: Movie | null = null;
   showForm: boolean = false;
   newMovie: Movie = {
     title: '',

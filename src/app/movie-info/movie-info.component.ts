@@ -1,4 +1,4 @@
-import { Component, Directive, OnInit } from '@angular/core';
+import { Component, Directive, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { MovieService } from '../services/movie.service';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ export class MovieInfoComponent implements OnInit {
   private moviesSubscription: Subscription;
   filteredMovies: Movie[] =[];
 
-  constructor(private movieService: MovieService) {
+  constructor(private movieService: MovieService, private cd: ChangeDetectorRef) {
   }
 
   sortDirections: { [key: string]: 'asc' | 'desc' } = {
@@ -128,6 +128,18 @@ export class MovieInfoComponent implements OnInit {
       && (!filters.rating || movie.rating.toLowerCase().startsWith(filters.rating.toLowerCase()))
       && (!filters.platform || movie.platform.toLowerCase().startsWith(filters.platform.toLowerCase()));
     });
+  }
+
+  movieClicked(movie: Movie): void {
+    if (!movie.coverUrl) {
+      this.movieService.fetchMovieCover(movie.title).subscribe(response => {
+        if (response.results && response.results.length) {
+          const imagePath = response.results[0].poster_path;
+          movie.coverUrl = `https://image.tmdb.org/t/p/w500${imagePath}`;
+          this.cd.markForCheck(); // Force Angular to re-check for changes
+        }
+      })
+    }
   }
 
 }

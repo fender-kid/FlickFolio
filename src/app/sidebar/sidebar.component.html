@@ -18,4 +18,10 @@
     <button class="btn btn-primary" (click)="addMovie()">Save Movie</button>
   </div>
 
+  <div *ngIf="selectedMovie">
+    <h2>{{ selectedMovie }}</h2>
+    <img [src]="selectedMovie?.coverUrl" alt="Movie Cover" *ngIf="selectedMovie?.coverUrl">
+
+  </div>
+
 </div>
