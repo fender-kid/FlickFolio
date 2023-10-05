@@ -1,5 +1,6 @@
 <!-- filters.component.html -->
 <div class="filters">
+  <input [(ngModel)]="titleFilter" placeholder="Filter by Title" (input)="onFilterChange()" />
   <input [(ngModel)]="statusFilter" placeholder="Filter by Status" (input)="onFilterChange()" />
   <input [(ngModel)]="releaseDateFilter" placeholder="Filter by Release Date" (input)="onFilterChange()" />
   <input [(ngModel)]="ratingFilter" placeholder="Filter by Rating" (input)="onFilterChange()" />

@@ -7,6 +7,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent {
+    titleFilter: string = '';
     statusFilter: string = '';
     releaseDateFilter: string = '';
     ratingFilter: string = '';
@@ -16,6 +17,7 @@ export class FiltersComponent {
 
     onFilterChange() {
         this.filtersChanged.emit({
+            title: this.titleFilter,
             status: this.statusFilter,
             releaseDate: this.releaseDateFilter,
             rating: this.ratingFilter,
