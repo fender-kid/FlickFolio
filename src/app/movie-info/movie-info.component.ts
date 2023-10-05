@@ -1,4 +1,4 @@
-import { Component, Directive, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { MovieService } from '../services/movie.service';
 import { Subscription } from 'rxjs';
@@ -12,6 +12,8 @@ export class MovieInfoComponent implements OnInit {
   movies: Movie[] = [];
   private moviesSubscription: Subscription;
   filteredMovies: Movie[] =[];
+
+  @Output() movieSelected = new EventEmitter<Movie>();
 
   constructor(private movieService: MovieService, private cd: ChangeDetectorRef) {
   }
@@ -140,6 +142,9 @@ export class MovieInfoComponent implements OnInit {
         }
       })
     }
+
+    // Emit the selected movie
+    this.movieSelected.emit(movie);
   }
 
 }
