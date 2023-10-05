@@ -6,9 +6,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class MovieService {
-  private movies: Movie[] = [];
+  private movies: Movie[] = JSON.parse(localStorage.getItem('movies')) || [];
 
-  private moviesSubject = new BehaviorSubject<Movie[]>([]);
+  private moviesSubject = new BehaviorSubject<Movie[]>(this.movies);
   movies$ = this.moviesSubject.asObservable();
 
   constructor() { }
@@ -18,7 +18,32 @@ export class MovieService {
   }
 
   addMovie(movie: Movie): void {
+
+    // Find the current highest id
+    const maxId = this.movies.reduce((max, currentMovie) => {
+      return currentMovie.id > max ? currentMovie.id : max;
+    }, 0);
+
+    movie.id = maxId + 1;
+
+    //Add the movie to the array
     this.movies.push(movie);
-    this.moviesSubject.next(this.movies); // Emit the updated movie array.
+
+    //Add the movie to local storage
+    localStorage.setItem('movies', JSON.stringify(this.movies));
+
+    // Emit the updated movie array
+    this.moviesSubject.next(this.movies);
+  }
+
+  deleteMovie(id: number): void {
+    // Filter out the movie with the specified ID, effectively deleting it from the movies array.
+    this.movies = this.movies.filter(movie => movie.id !== id);
+
+    // Update the local storage with the new movies array after the deletion.
+    localStorage.setItem('movies', JSON.stringify(this.movies));
+
+    // Emit the updated movie array
+    this.moviesSubject.next(this.movies);
   }
 }

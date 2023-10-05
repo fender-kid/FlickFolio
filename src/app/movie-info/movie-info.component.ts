@@ -1,4 +1,4 @@
-import { Component, Directive, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, Directive, OnInit } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { MovieService } from '../services/movie.service';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ export class MovieInfoComponent implements OnInit {
   movies: Movie[] = [];
   private moviesSubscription: Subscription;
 
-  constructor(private movieService: MovieService, private cdRef: ChangeDetectorRef) {
+  constructor(private movieService: MovieService) {
   }
 
   sortDirections: { [key: string]: 'asc' | 'desc' } = {
@@ -49,7 +49,7 @@ export class MovieInfoComponent implements OnInit {
 
   sortByReleaseDate(direction: 'asc' | 'desc'): void {
     this.movies.sort((a, b) => {
-      return direction ==='asc' ? a.releaseDate.localeCompare(b.releaseDate) : b.status.localeCompare(a.status);
+      return direction ==='asc' ? a.releaseDate.localeCompare(b.releaseDate) : b.releaseDate.localeCompare(a.releaseDate);
     });
   }
 
