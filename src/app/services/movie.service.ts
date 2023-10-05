@@ -46,4 +46,20 @@ export class MovieService {
     // Emit the updated movie array
     this.moviesSubject.next(this.movies);
   }
+
+  updateMovie(updatedMovie: Movie): void {
+    // Find the index of the movie with the given ID in the movies array.
+    const index = this.movies.findIndex(movie => movie.id === updatedMovie.id);
+
+    // If the movie is found, update its details.
+    if (index !== -1) {
+      this.movies[index] = updatedMovie;
+
+      // Update the local storage to reflect the changes.
+      localStorage.setItem('movies', JSON.stringify(this.movies));
+
+      // Emit the updated movie array
+      this.moviesSubject.next(this.movies);
+    }
+  }
 }

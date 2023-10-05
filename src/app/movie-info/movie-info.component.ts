@@ -95,6 +95,24 @@ export class MovieInfoComponent implements OnInit {
     this.sortDirections[attribute] = direction === 'asc' ? 'desc' : 'asc';
   }
 
+  // Track the movie being edited
+  editingMovie: Movie | null = null;
+
+  startEditing(movie: Movie): void {
+    // Creates a shallow copy to prevent direct modifications to the original object.
+    this.editingMovie = { ...movie };
+  }
+
+  // Save the edited movie details.
+  saveEditedMovie(): void {
+    if (this.editingMovie) {
+      this.movieService.updateMovie(this.editingMovie);
+
+      // Reset the editing state
+      this.editingMovie = null;
+    }
+  }
+
   deleteMovie(id: number): void {
     this.movieService.deleteMovie(id);
   }
