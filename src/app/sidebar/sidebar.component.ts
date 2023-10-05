@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { MovieService } from '../services/movie.service'
 
@@ -8,7 +8,7 @@ import { MovieService } from '../services/movie.service'
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  selectedMovie: Movie | null = null;
+  @Input() selectedMovie: Movie | null = null;
   showForm: boolean = false;
   newMovie: Movie = {
     title: '',

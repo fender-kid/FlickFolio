@@ -1,12 +1,11 @@
 <div class="container-fluid h-100">
   <div class="row h-100">
       <div class="col-2 bg-light">
-          <app-sidebar></app-sidebar>
+          <app-sidebar [selectedMovie]="selectedMovieForSidebar"></app-sidebar>
       </div>
       <div class="col-10">
         <app-header></app-header>
-        <app-movie-info></app-movie-info>
-
+        <app-movie-info (movieSelected)="displayMovieInSidebar($event)"></app-movie-info>
       </div>
   </div>
 </div>

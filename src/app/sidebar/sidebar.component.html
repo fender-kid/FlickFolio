@@ -20,7 +20,7 @@
 
   <div *ngIf="selectedMovie">
     <h2>{{ selectedMovie }}</h2>
-    <img [src]="selectedMovie?.coverUrl" alt="Movie Cover" *ngIf="selectedMovie?.coverUrl">
+    <img [src]="selectedMovie?.coverUrl" alt="Movie Cover" *ngIf="selectedMovie?.coverUrl" style="width: 100%; max-height: 300px;">
 
   </div>
 

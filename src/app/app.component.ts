@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Movie } from './models/movie.model';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FlickFolio';
+  selectedMovieForSidebar: Movie | null = null;
+
+  displayMovieInSidebar(movie: Movie) {
+    this.selectedMovieForSidebar = movie;
+  }
 }
