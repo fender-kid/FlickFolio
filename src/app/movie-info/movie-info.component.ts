@@ -39,19 +39,19 @@ export class MovieInfoComponent implements OnInit {
   }
 
   sortByTitle(direction: 'asc' | 'desc'): void {
-    this.movies.sort((a, b) => {
+    this.filteredMovies.sort((a, b) => {
       return direction === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
     });
   }
 
   sortByStatus(direction: 'asc' | 'desc'): void {
-    this.movies.sort((a, b) => {
+    this.filteredMovies.sort((a, b) => {
       return direction === 'asc' ? a.status.localeCompare(b.status) : b.status.localeCompare(a.status);
     });
   }
 
   sortByReleaseDate(direction: 'asc' | 'desc'): void {
-    this.movies.sort((a, b) => {
+    this.filteredMovies.sort((a, b) => {
       return direction ==='asc' ? a.releaseDate.localeCompare(b.releaseDate) : b.releaseDate.localeCompare(a.releaseDate);
     });
   }
@@ -59,7 +59,7 @@ export class MovieInfoComponent implements OnInit {
   sortByRating(direction: 'asc' |'desc'): void {
     const ratingOrder = { 'G' : 1, 'PG' : 2, 'PG-13' : 3, 'R' : 4, 'MA' : 5};
 
-    this.movies.sort((a, b) => {
+    this.filteredMovies.sort((a, b) => {
       const orderA = ratingOrder[a.rating];
       const orderB = ratingOrder[b.rating];
 
@@ -70,7 +70,7 @@ export class MovieInfoComponent implements OnInit {
   }
 
   sortByPlatform(direction: 'asc' | 'desc'): void {
-    this.movies.sort((a, b) => {
+    this.filteredMovies.sort((a, b) => {
       return direction === 'asc' ? a.platform.localeCompare(b.platform) : b.platform.localeCompare(a.platform);
     });
   }
