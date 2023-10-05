@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 export class MovieInfoComponent implements OnInit {
   movies: Movie[] = [];
   private moviesSubscription: Subscription;
+  filteredMovies: Movie[] =[];
 
   constructor(private movieService: MovieService) {
   }
@@ -25,6 +26,8 @@ export class MovieInfoComponent implements OnInit {
   ngOnInit(): void {
     this.moviesSubscription = this.movieService.movies$.subscribe(movies => {
       this.movies = movies;
+      // initialize filtered movies
+      this.filteredMovies = [...this.movies];
       console.log('Updated movies in MovieInfoComponent:', this.movies);
     });
   }
@@ -116,4 +119,14 @@ export class MovieInfoComponent implements OnInit {
   deleteMovie(id: number): void {
     this.movieService.deleteMovie(id);
   }
+
+  applyFilters(filters: any) {
+    this.filteredMovies = this.movies.filter(movie => {
+      return (!filters.status || movie.status.includes(filters.status))
+      && (!filters.releaseDate || movie.releaseDate.includes(filters.releaseDate))
+      && (!filters.rating || movie.rating.includes(filters.rating))
+      && (!filters.platform || movie.platform.includes(filters.platform));
+    });
+  }
+
 }

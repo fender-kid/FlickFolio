@@ -1,4 +1,5 @@
-<app-filters (onSort)="handleSort($event)"></app-filters>
+<app-filters (filtersChanged)="applyFilters($event)" (onSort)="handleSort($event)"></app-filters>
+
 
 <table class="table table-bordered table-hover">
   <thead class="thead-dark">
@@ -12,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let movie of movies">
+    <tr *ngFor="let movie of filteredMovies">
       <!-- Check if the movie is being edited -->
       <ng-container *ngIf="editingMovie?.id !== movie.id; else editTemplate">
         <td>{{movie.title}}</td>

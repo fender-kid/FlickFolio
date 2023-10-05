@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Movie } from '../models/movie.model'
+// filters.component.ts
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filters',
@@ -7,10 +7,19 @@ import { Movie } from '../models/movie.model'
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent {
-  @Input() movies: Movie[];
-  @Output() onSort = new EventEmitter<string>();
+    statusFilter: string = '';
+    releaseDateFilter: string = '';
+    ratingFilter: string = '';
+    platformFilter: string = '';
 
-  sort(attribute: string): void {
-    this.onSort.emit(attribute);
-  }
+    @Output() filtersChanged = new EventEmitter<any>();
+
+    onFilterChange() {
+        this.filtersChanged.emit({
+            status: this.statusFilter,
+            releaseDate: this.releaseDateFilter,
+            rating: this.ratingFilter,
+            platform: this.platformFilter
+        });
+    }
 }

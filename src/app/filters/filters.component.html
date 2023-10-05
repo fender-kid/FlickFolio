@@ -1,21 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="collapse navbar-collapse">
-      <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-              <a class="nav-link" href="#">Filters</a>
-          </li>
-          <li class="filter-item" (click)="sort('status')">
-              Status
-          </li>
-          <li class="nav-item">
-              Release Date
-          </li>
-          <li class="nav-item">
-              Rating
-          </li>
-          <li class="nav-item">
-              Platform
-          </li>
-      </ul>
-  </div>
-</nav>
+<!-- filters.component.html -->
+<div class="filters">
+  <input [(ngModel)]="statusFilter" placeholder="Filter by Status" (input)="onFilterChange()" />
+  <input [(ngModel)]="releaseDateFilter" placeholder="Filter by Release Date" (input)="onFilterChange()" />
+  <input [(ngModel)]="ratingFilter" placeholder="Filter by Rating" (input)="onFilterChange()" />
+  <input [(ngModel)]="platformFilter" placeholder="Filter by Platform" (input)="onFilterChange()" />
+</div>
