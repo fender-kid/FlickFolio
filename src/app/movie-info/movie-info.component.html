@@ -22,7 +22,7 @@
       <td>
         <!-- Sample Buttons -->
         <button class="btn btn-sm btn-primary">Edit</button>
-        <button class="btn btn-sm btn-danger">Delete</button>
+        <button class="btn btn-sm btn-danger" (click)="deleteMovie(movie.id)">Delete</button>
       </td>
     </tr>
     <p>Total Movies: {{ movies.length }}</p>

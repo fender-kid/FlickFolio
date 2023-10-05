@@ -94,4 +94,8 @@ export class MovieInfoComponent implements OnInit {
 
     this.sortDirections[attribute] = direction === 'asc' ? 'desc' : 'asc';
   }
+
+  deleteMovie(id: number): void {
+    this.movieService.deleteMovie(id);
+  }
 }
