@@ -39,14 +39,19 @@ export class MovieService {
   }
 
   deleteMovie(id: number): void {
-    // Filter out the movie with the specified ID, effectively deleting it from the movies array.
-    this.movies = this.movies.filter(movie => movie.id !== id);
+    // Ask hte user for confirmation
+    const isConfirmed = confirm('Are you sure you want to delete this movie?');
 
-    // Update the local storage with the new movies array after the deletion.
-    localStorage.setItem('movies', JSON.stringify(this.movies));
+    if (isConfirmed) {
+      // Filter out the movie with the specified ID, effectively deleting it from the movies array.
+      this.movies = this.movies.filter(movie => movie.id !== id);
 
-    // Emit the updated movie array
-    this.moviesSubject.next(this.movies);
+      // Update the local storage with the new movies array after the deletion.
+      localStorage.setItem('movies', JSON.stringify(this.movies));
+
+      // Emit the updated movie array
+      this.moviesSubject.next(this.movies);
+    }
   }
 
   updateMovie(updatedMovie: Movie): void {

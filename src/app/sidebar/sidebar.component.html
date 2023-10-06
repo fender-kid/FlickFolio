@@ -21,6 +21,8 @@
   <div *ngIf="selectedMovie">
     <h2>{{ selectedMovie?.title }}</h2>
     <img [src]="selectedMovie?.coverUrl" alt="Movie Cover" *ngIf="selectedMovie?.coverUrl" style="width: 100%; max-height: 300px;">
+    <!-- Need to write code to update the description and make this actually work. -->
+    <p>{{ selectedMovie?.description }}</p>
 
   </div>
 
