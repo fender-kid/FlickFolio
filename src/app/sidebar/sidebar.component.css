@@ -4,16 +4,16 @@
   margin: 10px 0;
 }
 
-#status {
-  padding-left: 10px;
-}
-
 select.sidebar_year_dropdown {
   height: 50px;;
   width: 100%;
-  padding: 2px;
-  font-size: 18px;
   overflow-y: auto; /* This makes sure a scrollbar appears when necessary */
 }
 
+select#status {
+  width: 100%;
+}
 
+select#rating {
+  width: 100%;
+}

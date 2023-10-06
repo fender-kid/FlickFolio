@@ -1,5 +1,6 @@
 <div class="sidebar-container p-3">
   <h1>FlickFolio</h1>
+  <!-- <button class="btn btn-success" (click)="showForm = !showForm">Add a Movie</button> -->
   <button class="btn btn-success" (click)="showForm = !showForm">Add a Movie</button>
 
   <div *ngIf="showForm">
@@ -56,7 +57,7 @@
           <button class="btn btn-primary" (click)="addMovie()">Save Movie</button>
         </td>
       </tr>
-  </tbody>
+    </tbody>
   </div>
 
   <div *ngIf="selectedMovie">
