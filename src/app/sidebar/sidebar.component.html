@@ -14,6 +14,7 @@
         <td>
              <!-- <input [(ngModel)]="newMovie.releaseDate" placeholder="Release Date"> -->
           <select class="sidebar_year_dropdown" [(ngModel)]="newMovie.releaseDate" >
+            <option value="" disabled selected>Release Date</option>
             <option *ngFor="let year of getYears()" [value]="year">
               {{ year }}
             </option>
@@ -23,19 +24,8 @@
 
       <tr>
         <td>
-          <label for="sidebar_year_dropdown">Release Date</label>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <label for="status">Have You Seen It?</label>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
           <select id="status" [(ngModel)]="newMovie.status" placeholder="Status">
+            <option value="" disabled selected>Have You Seen It?</option>
             <option value="Watched">Yes</option>
             <option value="Unwatched">No</option>
           </select>
@@ -44,13 +34,8 @@
 
       <tr>
         <td>
-          <label for="rating">Rating</label><br>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
           <select id="rating" [(ngModel)]="newMovie.rating">
+            <option value="" disabled selected>Rating</option>
             <option value="G">G</option>
             <option value="PG">PG</option>
             <option value="PG-13">PG-13</option>
