@@ -3,42 +3,75 @@
   <button class="btn btn-success" (click)="showForm = !showForm">Add a Movie</button>
 
   <div *ngIf="showForm">
-    <input [(ngModel)]="newMovie.title" placeholder="Title">
+    <tbody>
+      <tr>
+        <td>
+          <input [(ngModel)]="newMovie.title" placeholder="Title">
+        </td>
+      </tr>
 
-    <br>
+      <tr>
+        <td>
+             <!-- <input [(ngModel)]="newMovie.releaseDate" placeholder="Release Date"> -->
+          <select class="sidebar_year_dropdown" [(ngModel)]="newMovie.releaseDate" >
+            <option *ngFor="let year of getYears()" [value]="year">
+              {{ year }}
+            </option>
+          </select>
+        </td>
+      </tr>
 
-    <label for="sidebar_year_dropdown">Release Date</label>
+      <tr>
+        <td>
+          <label for="sidebar_year_dropdown">Release Date</label>
+        </td>
+      </tr>
 
-    <br>
+      <tr>
+        <td>
+          <label for="status">Have You Seen It?</label>
+        </td>
+      </tr>
 
-    <!-- <input [(ngModel)]="newMovie.releaseDate" placeholder="Release Date"> -->
-    <td>
-      <select class="sidebar_year_dropdown" [(ngModel)]="newMovie.releaseDate" >
-        <option *ngFor="let year of getYears()" [value]="year">
-          {{ year }}
-        </option>
-      </select>
-    </td><br>
+      <tr>
+        <td>
+          <select id="status" [(ngModel)]="newMovie.status" placeholder="Status">
+            <option value="Watched">Yes</option>
+            <option value="Unwatched">No</option>
+          </select>
+        </td>
+      </tr>
 
-    <td>
-    <label for="status">Have You Seen It?</label>
-    <select id="status" [(ngModel)]="newMovie.status" placeholder="Status">
-      <option value="Watched">Yes</option>
-      <option value="Unwatched">No</option>
-    </select>
-    </td>
+      <tr>
+        <td>
+          <label for="rating">Rating</label><br>
+        </td>
+      </tr>
 
-    <label for="rating">Rating</label><br>
-    <select id="rating" [(ngModel)]="newMovie.rating">
-      <option value="G">G</option>
-      <option value="PG">PG</option>
-      <option value="PG-13">PG-13</option>
-      <option value="R">R</option>
-      <option value="MA">MA</option>
-    </select>
+      <tr>
+        <td>
+          <select id="rating" [(ngModel)]="newMovie.rating">
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+            <option value="MA">MA</option>
+          </select>
+        </td>
+      </tr>
 
-    <input [(ngModel)]="newMovie.platform" placeholder="Platform">
-    <button class="btn btn-primary" (click)="addMovie()">Save Movie</button>
+      <tr>
+        <td>
+          <input [(ngModel)]="newMovie.platform" placeholder="Platform">
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <button class="btn btn-primary" (click)="addMovie()">Save Movie</button>
+        </td>
+      </tr>
+  </tbody>
   </div>
 
   <div *ngIf="selectedMovie">
