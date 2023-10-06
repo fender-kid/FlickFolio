@@ -1,6 +1,5 @@
 <div class="sidebar-container p-3">
   <h1>FlickFolio</h1>
-  <!-- <button class="btn btn-success" (click)="showForm = !showForm">Add a Movie</button> -->
   <button class="btn btn-success" (click)="showForm = !showForm">Add a Movie</button>
 
   <div *ngIf="showForm">
@@ -10,10 +9,9 @@
           <input [(ngModel)]="newMovie.title" placeholder="Title">
         </td>
       </tr>
-
+<!---
       <tr>
         <td>
-             <!-- <input [(ngModel)]="newMovie.releaseDate" placeholder="Release Date"> -->
           <select class="sidebar_year_dropdown" [(ngModel)]="newMovie.releaseDate" >
             <option value="" disabled selected>Release Date</option>
             <option *ngFor="let year of getYears()" [value]="year">
@@ -22,6 +20,7 @@
           </select>
         </td>
       </tr>
+-->
 
       <tr>
         <td>
@@ -32,7 +31,7 @@
           </select>
         </td>
       </tr>
-
+<!---
       <tr>
         <td>
           <select id="rating" [(ngModel)]="newMovie.rating">
@@ -45,6 +44,7 @@
           </select>
         </td>
       </tr>
+-->
 
       <tr>
         <td>
@@ -54,7 +54,9 @@
 
       <tr>
         <td>
-          <button class="btn btn-primary" (click)="addMovie()">Save Movie</button>
+          <!-- Delete after new button working. -->
+          <!-- <button class="btn btn-primary" (click)="addMovie()">Save Movie</button> -->
+          <button class="btn btn-primary" (click)="saveMovie()">Save Movie</button>
         </td>
       </tr>
     </tbody>

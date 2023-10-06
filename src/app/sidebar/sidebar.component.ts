@@ -21,6 +21,7 @@ export class SidebarComponent {
   constructor(private movieService: MovieService) {
   }
 
+  // Delete after saveMovie() method confirmed working
   addMovie() {
     this.movieService.addMovie(this.newMovie);
     this.newMovie = {
@@ -31,6 +32,24 @@ export class SidebarComponent {
       platform: '',
     };
     this.showForm = false;
+  }
+
+  saveMovie() {
+    // Fetch details based on the title entered
+    this.movieService.fetchMovieDetails(this.newMovie.title).subscribe(response => {
+      if (response.results && response.results.length) {
+        const movieData = response.results[0];
+        this.newMovie.releaseDate = movieData.release_date.split('-')[0];
+        this.newMovie.coverUrl = `https://image.tmdb.org/t/p/w500${movieData.poster_path}`;
+        this.movieService.addMovie(this.newMovie);
+        // Reset the form for the next input
+        this.newMovie = { title: '', status: '', rating: '', platform: '' };
+        this.showForm = false; // Optionally hide the form after saving
+      } else {
+        // Handle error if movie not found or other issues
+        console.error('Error fetching movie details from the API');
+      }
+    });
   }
 
   getYears(): number[] {
