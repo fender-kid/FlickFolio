@@ -6,3 +6,12 @@ button {
   cursor: pointer;
   outline: none;
 }
+
+select.year-dropdown {
+  height: 50px;;
+  width: 100%;
+  padding: 2px;
+  font-size: 18px;
+  overflow-y: auto; /* This makes sure a scrollbar appears when necessary */
+}
+

@@ -30,9 +30,33 @@
       <!-- Template for editing a movie -->
       <ng-template #editTemplate>
         <td><input [(ngModel)]="editingMovie.title" /></td>
-        <td><input [(ngModel)]="editingMovie.releaseDate" /></td>
-        <td><input [(ngModel)]="editingMovie.status" /></td>
-        <td><input [(ngModel)]="editingMovie.rating" /></td>
+
+        <td>
+          <select class="year-dropdown" [(ngModel)]="editingMovie.releaseDate" >
+            <option *ngFor="let year of getYears()" [value]="year">
+              {{ year }}
+            </option>
+          </select>
+        </td>
+
+        <td>
+          <select [(ngModel)]="editingMovie.status">
+            <option value="Watched">Watched</option>
+            <option value="Unwatched">Unwatched</option>
+          </select>
+        </td>
+
+        <td>
+          <select [(ngModel)]="editingMovie.rating">
+              <option value="G">G</option>
+              <option value="PG">PG</option>
+              <option value="PG-13">PG-13</option>
+              <option value="R">R</option>
+              <option value="MA">MA</option>
+          </select>
+      </td>
+
+
         <td><input [(ngModel)]="editingMovie.platform" /></td>
         <td>
           <button class="btn btn-sm btn-success" (click)="saveEditedMovie()">Save</button>

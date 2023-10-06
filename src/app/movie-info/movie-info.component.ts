@@ -40,6 +40,12 @@ export class MovieInfoComponent implements OnInit {
     }
   }
 
+  getYears(): number[] {
+    const currentYear = new Date().getFullYear();
+    const startYear = 1900;
+    return Array.from({ length: currentYear - startYear + 1 }).map((_, i) => startYear + i);
+  }
+
   sortByTitle(direction: 'asc' | 'desc'): void {
     this.filteredMovies.sort((a, b) => {
       return direction === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
