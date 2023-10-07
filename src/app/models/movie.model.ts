@@ -1,6 +1,7 @@
 export interface Movie {
   id?: number; // the ? means this attribute is optional
   title: string;
+  overview?: string;
   releaseDate?: string;
   status: string;
   rating?: string;
