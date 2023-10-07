@@ -39,7 +39,20 @@ export class SidebarComponent {
         if (response.results && response.results.length) {
 
             // sort movies based on votes
-            const sortedMovies = response.results.sort((a, b) => b.vote_count - a.vote_count);
+            const sortedMovies = response.results.sort((a, b) => {
+              // Prioritize titles that start with the search phrase
+              const startsWithA = a.title.startsWith(this.newMovie.title);
+              const startsWithB = b.title.startsWith(this.newMovie.title);
+              if (startsWithA && !startsWithB) {
+                return -1;
+              } else if (!startsWithA && startsWithB) {
+                return 1;
+              }
+
+              // If neither or both start with the search term, then sort by vote count
+              return b.vote_count - a.vote_count;
+            });
+
             const movieData = sortedMovies[0];
 
             const imagePath = movieData.poster_path;
