@@ -59,7 +59,6 @@ export class SidebarComponent {
             const movieData = sortedMovies[0];
 
             this.newMovie.overview = movieData.overview;
-            console.log('Fetched Overview:', movieData.overview);
 
             const imagePath = movieData.poster_path;
             this.newMovie.coverUrl = `https://image.tmdb.org/t/p/w500${imagePath}`;
@@ -74,7 +73,6 @@ export class SidebarComponent {
                 if (usRelease && usRelease.release_dates && usRelease.release_dates.length) {
                     const certification = usRelease.release_dates[0].certification;
                     this.newMovie.rating = certification;
-                    console.log('Movie Rating: ' + this.newMovie.rating);
                 }
 
 
