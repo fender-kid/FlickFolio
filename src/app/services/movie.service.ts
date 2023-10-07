@@ -80,4 +80,9 @@ export class MovieService {
     const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${this.TMDB_API_KEY}&query=${encodeURIComponent(title)}`;
     return this.http.get(searchUrl);
   }
+
+  fetchMovieCertification(movieId: number): Observable<any> {
+    const certificationUrl = `https://api.themoviedb.org/3/movie/${movieId}/release_dates?api_key=${this.TMDB_API_KEY}`;
+    return this.http.get(certificationUrl);
+  }
 }
