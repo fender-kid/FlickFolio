@@ -71,10 +71,10 @@ export class MovieService {
   }
 
   // Remove after I verify fetchMovieDetails is working properly.
-  fetchMovieCover(title: string): Observable<any> {
-    const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${this.TMDB_API_KEY}&query=${encodeURIComponent(title)}`;
-    return this.http.get(searchUrl);
-  }
+  // fetchMovieCover(title: string): Observable<any> {
+  //   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${this.TMDB_API_KEY}&query=${encodeURIComponent(title)}`;
+  //   return this.http.get(searchUrl);
+  // }
 
   fetchMovieDetails(title: string): Observable<any> {
     const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${this.TMDB_API_KEY}&query=${encodeURIComponent(title)}`;

@@ -140,7 +140,7 @@ export class MovieInfoComponent implements OnInit {
 
   movieClicked(movie: Movie): void {
     if (!movie.coverUrl) {
-      this.movieService.fetchMovieCover(movie.title).subscribe(response => {
+      this.movieService.fetchMovieDetails(movie.title).subscribe(response => {
         if (response.results && response.results.length) {
           const imagePath = response.results[0].poster_path;
           movie.coverUrl = `https://image.tmdb.org/t/p/w500${imagePath}`;
