@@ -41,11 +41,12 @@ export class SidebarComponent {
             // sort movies based on votes
             const sortedMovies = response.results.sort((a, b) => b.vote_count - a.vote_count);
             const movieData = sortedMovies[0];
+
+            const imagePath = movieData.poster_path;
+            this.newMovie.coverUrl = `https://image.tmdb.org/t/p/w500${imagePath}`;
+
             this.newMovie.releaseDate = movieData.release_date.split('-')[0];
 
-            console.log("API Response:", response);
-
-            console.log(movieData.release_date);
             const movieId = movieData.id;
 
             // Fetch certification
