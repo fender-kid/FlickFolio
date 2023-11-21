@@ -13,9 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 //Firebase Imports
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { firebaseConfig } from './firebase-config';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { firebaseConfig } from './firebase-config';
 
 @NgModule({
   declarations: [
