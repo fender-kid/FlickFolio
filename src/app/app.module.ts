@@ -10,6 +10,13 @@ import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { MovieService } from './services/movie.service';
 import { HttpClientModule } from '@angular/common/http';
 
+//Firebase Imports
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { firebaseConfig } from './firebase-config';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     BrowserModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [MovieService],
   bootstrap: [AppComponent]
