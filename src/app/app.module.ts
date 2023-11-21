@@ -16,13 +16,16 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { firebaseConfig } from '../firebaseconfig';
+import { LoginComponent } from './components/login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SidebarComponent,
     FiltersComponent,
-    MovieInfoComponent
+    MovieInfoComponent,
+    LoginComponent,
   ],
   imports: [
     FormsModule,
